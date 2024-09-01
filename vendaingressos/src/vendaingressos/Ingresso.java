@@ -1,5 +1,7 @@
 package vendaingressos;
 
+import java.util.Objects;
+
 public class Ingresso {
 
     private Evento evento ;
@@ -39,12 +41,30 @@ public class Ingresso {
     }
 
     public boolean cancelar() {
-        this.ativo = false;
-        return  isAtivo();
+        if(this.evento.isAtivo()) {
+            this.ativo = false;
+            return true;
+        }
+        else return false;
     }
 
-    public boolean reativar() {
-        this.ativo = true;
-        return  isAtivo();
+    public boolean reativar(){
+        if(this.evento.isAtivo() && !isAtivo()){
+            this.ativo = true;
+            return true;
+        }
+        else return  false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ingresso ingresso)) return false;
+        return Double.compare(preco, ingresso.preco) == 0 && ativo == ingresso.ativo && Objects.equals(evento, ingresso.evento) && Objects.equals(assento, ingresso.assento);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(evento, preco, assento, ativo);
     }
 }
