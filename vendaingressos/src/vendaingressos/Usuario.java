@@ -1,5 +1,7 @@
 package vendaingressos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
@@ -10,7 +12,7 @@ public class Usuario {
     private  String email;
     private boolean admin;
 
-    private Ingresso ingressos;
+    private List<Ingresso> ingressos;
 
     public Usuario(String login, String senha,String nome,  String cpf, String email, boolean admin) {
         this.nome = nome;
@@ -19,14 +21,16 @@ public class Usuario {
         this.cpf = cpf;
         this.email = email;
         this.admin = admin;
+        this.ingressos = new ArrayList<>();
     }
 
     @Override
+    // sobescrita do metodo equals para se enquandar ao teste de UsuarioDuplicado
     public boolean equals(Object obj) {
-        if (this == obj) return true;  // Verifica se é o mesmo objeto
-        if (obj == null || getClass() != obj.getClass()) return false;  // Verifica se é nulo ou de outra classe
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        Usuario usuario = (Usuario) obj;  // Faz o cast para o tipo Usuario
+        Usuario usuario = (Usuario) obj;
 
         // Comparação dos atributos que definem igualdade
         return  login.equals(usuario.login) &&
@@ -70,10 +74,6 @@ public class Usuario {
         this.admin = admin;
     }
 
-    public void setIngressos(Ingresso ingressos) {
-        this.ingressos = ingressos;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -98,8 +98,11 @@ public class Usuario {
         return email;
     }
 
-    public Ingresso getIngressos() {
+    public List<Ingresso> getIngressos() {
         return ingressos;
     }
 
+    public void setIngressos(Ingresso ingressos) {
+        this.ingressos.add(ingressos) ;
+    }
 }
