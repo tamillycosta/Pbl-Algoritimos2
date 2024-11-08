@@ -1,3 +1,4 @@
+package modelsTest;
 
 import java.time.LocalDate;
 import models.Evento;
