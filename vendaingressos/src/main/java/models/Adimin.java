@@ -3,20 +3,34 @@ package models;
 import java.security.SecureRandom;
 import java.util.Objects;
 
+
 public class Adimin extends  Usuario{
 
+
+    /**
+     * Uma subclasse de {@link Usuario} que representa um usuário administrador. Esta classe fornece
+     * funcionalidade adicional para gerar uma chave de segurança usando {@link SecureRandom}.
+     */
     static final private SecureRandom chaveSegrança =  new SecureRandom();;
 
-    public Adimin(String login, String senha, String nome, String cpf, String email ) {
-        super(login, senha, nome, cpf, email);
+    /**
+     *
+     * @param login
+     * @param senha
+     * @param cpf
+     * @param email
+     */
+    public Adimin(String login, String senha, String cpf, String email ) {
+        super(login, senha, cpf, email);
         gerarChaveSeguranca();
     }
 
-    public boolean login(String login, String senha, SecureRandom chaveSegrança){
-        return Objects.equals(getLogin(), login) && Objects.equals(getSenha(), senha);
-    }
 
-
+    /**
+     * Gera uma chave de segurança aleatória no formato hexadecimal.
+     *
+     * @return uma string hexadecimal de 32 caracteres que representa a chave de segurança
+     */
     public String gerarChaveSeguranca() {
         byte[] bytes = new byte[16]; // Gera 16 bytes aleatórios
         Adimin.chaveSegrança.nextBytes(bytes);
@@ -27,6 +41,12 @@ public class Adimin extends  Usuario{
         return sb.toString();
     }
 
+
+    /**
+     * Retorna a instância de {@link SecureRandom} usada para gerar a chave de segurança.
+     *
+     * @return a instância estática de {@code SecureRandom}
+     */
     public SecureRandom getChaveSeguranca() {
         return Adimin.chaveSegrança;
     }

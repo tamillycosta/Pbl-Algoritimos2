@@ -1,14 +1,15 @@
-package models.abstratas;
+package models.interfaces;
+
+public interface MetodoPagamento {
+
+
+    void setValorPagar(double valorPagar);
+
+    boolean validar();
+
+    boolean processarPagamento(double valor);
 
 
 
-public abstract class MetodoPagamento {
 
-
-
-    public abstract boolean processarPagamento(double valor);
-
-    public abstract boolean processarPagamento(double valorPagar, int parcelas);
-
-    
 }

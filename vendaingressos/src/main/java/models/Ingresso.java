@@ -23,6 +23,11 @@ public class Ingresso {
     private boolean ativo;
 
 
+    /***
+     *
+     * @param evento
+     * @param preco
+     */
     public Ingresso(Evento evento, double preco) {
         this.id = UUID.randomUUID().toString();
         this.evento = evento;
@@ -77,6 +82,7 @@ public class Ingresso {
         return ativo;
     }
 
-
-
+    public String getId() {
+        return id;
+    }
 }

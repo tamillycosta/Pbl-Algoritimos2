@@ -6,12 +6,17 @@ public class Avaliacao {
     private  int estrelas;
 
 
+    /***
+     *
+     * @param usuario
+     * @param comentario
+     * @param estrelas
+     */
     public Avaliacao(Usuario usuario, String comentario, int estrelas) {
         this.usuario = usuario;
         this.comentario = comentario;
-        this.estrelas = estrelas;
+        this.estrelas = setEstrelas(estrelas);
     }
-
 
     @Override
     public String toString() {
@@ -34,6 +39,13 @@ public class Avaliacao {
         return comentario;
     }
 
+    /***
+     * Define o comentário associado. O comentário não pode ser nulo ou vazio.
+     *
+     * @param comentario o comentário a ser definido
+     * @throws IllegalArgumentException se o comentário for nulo ou vazio
+     */
+
     public void setComentario(String comentario) {
         if (comentario == null || comentario.isEmpty()) {
             throw new IllegalArgumentException("Comentário não pode ser vazio.");
@@ -45,7 +57,18 @@ public class Avaliacao {
         return estrelas;
     }
 
-    public void setEstrelas(int estrelas) {
-        this.estrelas = estrelas;
+    /***
+     * Define a quantidade de estrelas, limitando o valor a no máximo 5.
+     *
+     * @param estrelas a quantidade de estrelas a ser definida
+     * @return o valor de estrelas definido
+     */
+    public int setEstrelas(int estrelas) {
+        if(estrelas <= 5){
+            this.estrelas = estrelas;
+        }
+        return estrelas;
     }
+
+
 }
